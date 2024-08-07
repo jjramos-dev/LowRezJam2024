@@ -23,4 +23,7 @@ vframes = 3
 position = Vector2(0.5, -0.5)
 shape = SubResource("CircleShape2D_gtalj")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

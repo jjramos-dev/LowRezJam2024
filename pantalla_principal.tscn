@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://whqms4rv85yf"]
+[gd_scene load_steps=13 format=3 uid="uid://whqms4rv85yf"]
 
 [ext_resource type="Script" path="res://escenas/pantalla_principal.gd" id="1_og0di"]
 [ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="1_qaugb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgm16amlkthlr" path="res://mobiliario/plancha.tscn" id="3_qsr8n"]
 [ext_resource type="PackedScene" uid="uid://b2r8oewvv0hhf" path="res://mobiliario/balancin.tscn" id="3_wxq23"]
 [ext_resource type="PackedScene" uid="uid://ckytarkd2026m" path="res://mobiliario/trampolin.tscn" id="4_lgfkk"]
+[ext_resource type="PackedScene" uid="uid://kykxpjnirtnt" path="res://Componentes/generador_pulgas.tscn" id="8_bmtf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdkh"]
 size = Vector2(85, 20)
@@ -74,6 +75,7 @@ position = Vector2(32, 32)
 [node name="Objetos" type="Node2D" parent="."]
 
 [node name="Pulga" parent="Objetos" instance=ExtResource("2_wxkav")]
+visible = false
 position = Vector2(5, 27)
 JUMP_VELOCITY = 25.0
 gravedad = Vector2(0, 20)
@@ -86,3 +88,5 @@ IMPULSO = 1.2
 position = Vector2(0, 45)
 
 [node name="Marker2D" type="Marker2D" parent="InicioZonaControlTrampolin"]
+
+[node name="GeneradorPulgas" parent="." instance=ExtResource("8_bmtf3")]

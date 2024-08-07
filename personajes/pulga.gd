@@ -9,30 +9,44 @@ var _agarre=null
 
 enum ESTADO {SALTANDO,CAYENDO,BARRA,PARADO}
 var estado=ESTADO.SALTANDO
+var maxima_altura=0
+
+func _ready():
+	estado=ESTADO.SALTANDO
 
 func _physics_process(delta):
 	# Add the gravity.
-	
+	#if is_on_floor() or is_on_wall():
+	#	estado=ESTADO.PARADO
+		
 	match estado:
 		ESTADO.SALTANDO:
 			if (not is_on_floor()) and (not is_on_wall()):
 				velocity += gravedad * delta
 			else:
-				velocity.x=randf_range(-1,1)*JUMP_VELOCITY
-	
-				# Si se para...
+				#estado=ESTADO.PARADO
+				# $Timer.start(randf_range(2,4))
+				# velocity.x=(1-randi(2))*randf_range(-1,1)*JUMP_VELOCITY
+				velocity.x=((1-randi_range(0,2)))*JUMP_VELOCITY/4.0
+				#
+				## Si se para...
 				if absf(velocity.y)<1:
 					velocity.y = -JUMP_VELOCITY # *randf_range(0.8,1.5)
 		
 			move_and_slide()
+			
 		ESTADO.BARRA:
 			if _agarre!=null:
 				global_position=_agarre.global_position
+				
+		ESTADO.PARADO:
+			pass
 			
 func impulsar_arriba(impulso):
 	velocity.y=-absf(velocity.y)*impulso
-	velocity.x=randf_range(-1,1)*JUMP_VELOCITY
-
+	# velocity.x=randf_range(-1,1)*JUMP_VELOCITY
+	velocity.x=((1-randi_range(0,2)))*JUMP_VELOCITY/4.0
+	
 func colgar(agarre):
 	estado=ESTADO.BARRA
 	_agarre=agarre
@@ -42,3 +56,11 @@ func colgar(agarre):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		estado=ESTADO.SALTANDO
+		_agarre.desagarrar(self)
+
+
+func _on_timer_timeout():
+	velocity.x=randf_range(-1,1)*JUMP_VELOCITY
+	velocity.y = -JUMP_VELOCITY # *randf_range(0.8,1.5)
+		
+	estado=ESTADO.SALTANDO

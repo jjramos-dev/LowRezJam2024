@@ -6,6 +6,8 @@ var direccion=1
 const GRAD2RAD=PI/180
 @export var ritmo=1
 @export var desfase=0
+@export var max_pulgas=2
+var n_pulgas=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,8 +26,12 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("pulga"):
-		body.colgar($agarre)
-
+		if n_pulgas<max_pulgas:
+			body.colgar($agarre)
+			n_pulgas=n_pulgas+1
 
 func _on_agarre_input_event(viewport, event, shape_idx):
 	print("evento balancín")
+	
+func desagarrar(pulga):
+	n_pulgas=n_pulgas-1
