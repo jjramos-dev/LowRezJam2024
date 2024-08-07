@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://whqms4rv85yf"]
+
+[ext_resource type="Script" path="res://escenas/pantalla_principal.gd" id="1_og0di"]
+[ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="1_qaugb"]
+[ext_resource type="PackedScene" uid="uid://tlpxudrg2jn1" path="res://personajes/pulga.tscn" id="2_wxkav"]
+[ext_resource type="Texture2D" uid="uid://dfal6gfb2hl6i" path="res://activos/graficos/marco.png" id="3_k5jk3"]
+[ext_resource type="PackedScene" uid="uid://dgm16amlkthlr" path="res://mobiliario/plancha.tscn" id="3_qsr8n"]
+[ext_resource type="PackedScene" uid="uid://b2r8oewvv0hhf" path="res://mobiliario/balancin.tscn" id="3_wxq23"]
+[ext_resource type="PackedScene" uid="uid://ckytarkd2026m" path="res://mobiliario/trampolin.tscn" id="4_lgfkk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdkh"]
+size = Vector2(85, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxg6"]
+size = Vector2(10, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m02b5"]
+size = Vector2(10, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dmoc"]
+size = Vector2(84, 8)
+
+[node name="PantallaPrincipal" type="Node2D"]
+script = ExtResource("1_og0di")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("1_qaugb")
+
+[node name="Balancin" parent="." instance=ExtResource("3_wxq23")]
+position = Vector2(14, 0)
+
+[node name="Balancin2" parent="." instance=ExtResource("3_wxq23")]
+position = Vector2(46, 0)
+scale = Vector2(-1, 1)
+ritmo = 2
+desfase = 500
+
+[node name="Limites" type="StaticBody2D" parent="."]
+position = Vector2(0, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites"]
+position = Vector2(32.5, 0)
+shape = SubResource("RectangleShape2D_ycdkh")
+
+[node name="ColorRect" type="ColorRect" parent="Limites"]
+offset_top = -11.0
+offset_right = 64.0
+offset_bottom = 8.0
+color = Color(0.537255, 0, 0.0588235, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Limites"]
+position = Vector2(-5, -39.5)
+shape = SubResource("RectangleShape2D_gcxg6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Limites"]
+position = Vector2(69, -39.5)
+shape = SubResource("RectangleShape2D_m02b5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Limites"]
+position = Vector2(32, -60)
+shape = SubResource("RectangleShape2D_2dmoc")
+
+[node name="Plancha" parent="Limites" instance=ExtResource("3_qsr8n")]
+position = Vector2(4, -22)
+
+[node name="Marco" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("3_k5jk3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="Objetos" type="Node2D" parent="."]
+
+[node name="Pulga" parent="Objetos" instance=ExtResource("2_wxkav")]
+position = Vector2(5, 27)
+JUMP_VELOCITY = 25.0
+gravedad = Vector2(0, 20)
+
+[node name="Trampolin" parent="Objetos" instance=ExtResource("4_lgfkk")]
+position = Vector2(29, 44)
+IMPULSO = 1.2
+
+[node name="InicioZonaControlTrampolin" type="Node2D" parent="."]
+position = Vector2(0, 45)
+
+[node name="Marker2D" type="Marker2D" parent="InicioZonaControlTrampolin"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgm16amlkthlr"]
+
+[ext_resource type="Texture2D" uid="uid://cfm4lgh3k31ma" path="res://activos/graficos/trampolin.png" id="1_77yfa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw0w0"]
+size = Vector2(8, 3)
+
+[node name="Plancha" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_iw0w0")
+
+[node name="Trampolin" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_77yfa")
+hframes = 2
+vframes = 3

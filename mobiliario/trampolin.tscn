@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckytarkd2026m"]
+
+[ext_resource type="Script" path="res://mobiliario/trampolin.gd" id="1_piyjl"]
+[ext_resource type="Texture2D" uid="uid://cfm4lgh3k31ma" path="res://activos/graficos/trampolin.png" id="1_xa42m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scff6"]
+size = Vector2(8, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g1op"]
+size = Vector2(8, 3)
+
+[node name="Trampolin" type="CharacterBody2D"]
+script = ExtResource("1_piyjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_scff6")
+
+[node name="Trampolin" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_xa42m")
+hframes = 2
+vframes = 3
+
+[node name="DetectarColision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectarColision"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_0g1op")
+
+[connection signal="body_entered" from="DetectarColision" to="." method="_on_detectar_colision_body_entered"]

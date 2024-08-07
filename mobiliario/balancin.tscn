@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2r8oewvv0hhf"]
+
+[ext_resource type="Script" path="res://mobiliario/balancin.gd" id="1_pa37p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_716s6"]
+radius = 3.16228
+
+[node name="Balancin" type="Marker2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_pa37p")
+
+[node name="Line2D" type="Line2D" parent="."]
+rotation = -6.28319
+points = PackedVector2Array(0, 0, -2.62268e-06, 15, -2, 17, -2, -3.49691e-07)
+width = 1.0
+default_color = Color(0.482353, 0.427451, 0.431373, 1)
+sharp_limit = 0.0
+
+[node name="agarre" type="Area2D" parent="."]
+position = Vector2(-1, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="agarre"]
+shape = SubResource("CircleShape2D_716s6")
+
+[connection signal="body_entered" from="agarre" to="." method="_on_area_2d_body_entered"]
+[connection signal="input_event" from="agarre" to="." method="_on_agarre_input_event"]
