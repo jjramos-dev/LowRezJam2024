@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://whqms4rv85yf"]
+[gd_scene load_steps=15 format=3 uid="uid://whqms4rv85yf"]
 
 [ext_resource type="Script" path="res://escenas/pantalla_principal.gd" id="1_og0di"]
 [ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="1_qaugb"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dgm16amlkthlr" path="res://mobiliario/plancha.tscn" id="3_qsr8n"]
 [ext_resource type="PackedScene" uid="uid://b2r8oewvv0hhf" path="res://mobiliario/balancin.tscn" id="3_wxq23"]
 [ext_resource type="PackedScene" uid="uid://ckytarkd2026m" path="res://mobiliario/trampolin.tscn" id="4_lgfkk"]
+[ext_resource type="PackedScene" uid="uid://e5ommegsge8v" path="res://mobiliario/catapulta.tscn" id="4_yytxt"]
 [ext_resource type="PackedScene" uid="uid://kykxpjnirtnt" path="res://Componentes/generador_pulgas.tscn" id="8_bmtf3"]
+[ext_resource type="PackedScene" uid="uid://kdftp2hdg8jg" path="res://mobiliario/cuba.tscn" id="10_kg1yu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdkh"]
 size = Vector2(85, 20)
@@ -65,6 +67,9 @@ shape = SubResource("RectangleShape2D_2dmoc")
 [node name="Plancha" parent="Limites" instance=ExtResource("3_qsr8n")]
 position = Vector2(4, -22)
 
+[node name="Plancha2" parent="Limites" instance=ExtResource("3_qsr8n")]
+position = Vector2(59, -22)
+
 [node name="Marco" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
 texture = ExtResource("3_k5jk3")
@@ -90,3 +95,9 @@ position = Vector2(0, 45)
 [node name="Marker2D" type="Marker2D" parent="InicioZonaControlTrampolin"]
 
 [node name="GeneradorPulgas" parent="." instance=ExtResource("8_bmtf3")]
+
+[node name="cuba" parent="." instance=ExtResource("10_kg1yu")]
+position = Vector2(58, 28)
+
+[node name="catapulta" parent="." instance=ExtResource("4_yytxt")]
+position = Vector2(56, 43)
