@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://d3431d5v1c8r0"]
+
+[ext_resource type="Script" path="res://menus/portada.gd" id="1_jc400"]
+[ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="2_fp20m"]
+[ext_resource type="FontFile" uid="uid://jgdl0qowmsnl" path="res://activos/fuentes/geompixel.ttf" id="3_14auf"]
+[ext_resource type="PackedScene" uid="uid://tlpxudrg2jn1" path="res://personajes/pulga.tscn" id="4_swbn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x52ri"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aih0h"]
+size = Vector2(23, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jncsb"]
+size = Vector2(15, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyv32"]
+size = Vector2(23, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_748aj"]
+size = Vector2(5, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqbs0"]
+size = Vector2(6, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xcsw"]
+size = Vector2(75, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7heln"]
+size = Vector2(75, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1o0p"]
+size = Vector2(63, 3)
+
+[node name="Portada" type="Node2D"]
+script = ExtResource("1_jc400")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("2_fp20m")
+
+[node name="Titulo" type="Label" parent="."]
+texture_filter = 1
+offset_top = 7.0
+offset_right = 64.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.537255, 0, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("3_14auf")
+theme_override_font_sizes/font_size = 5
+text = "The Mayhem Flea Circus"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="letras" type="StaticBody2D" parent="Titulo"]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Titulo/letras"]
+position = Vector2(8, 6)
+shape = SubResource("RectangleShape2D_x52ri")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Titulo/letras"]
+position = Vector2(29.5, 6)
+shape = SubResource("RectangleShape2D_aih0h")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Titulo/letras"]
+position = Vector2(53.5, 6)
+shape = SubResource("RectangleShape2D_jncsb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Titulo/letras"]
+position = Vector2(31.5, 15)
+shape = SubResource("RectangleShape2D_pyv32")
+
+[node name="Empezar" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 35.0
+offset_right = 64.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_14auf")
+theme_override_font_sizes/font_size = 5
+text = "Press to start"
+
+[node name="Creditos" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 50.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_14auf")
+theme_override_font_sizes/font_size = 5
+text = "Credits
+"
+
+[node name="bordes" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bordes"]
+position = Vector2(-2.5, 32)
+shape = SubResource("RectangleShape2D_748aj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="bordes"]
+position = Vector2(67, 32)
+shape = SubResource("RectangleShape2D_xqbs0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bordes"]
+position = Vector2(32.5, -3.5)
+shape = SubResource("RectangleShape2D_7xcsw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bordes"]
+position = Vector2(32.5, 67.5)
+shape = SubResource("RectangleShape2D_7heln")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="bordes"]
+position = Vector2(32, 36)
+shape = SubResource("RectangleShape2D_k1o0p")
+
+[node name="Pulga" parent="." instance=ExtResource("4_swbn8")]
+position = Vector2(4, 23)
+
+[node name="Pulga2" parent="." instance=ExtResource("4_swbn8")]
+position = Vector2(22, 27)
+
+[node name="Pulga3" parent="." instance=ExtResource("4_swbn8")]
+position = Vector2(38, 2)
+
+[node name="Pulga4" parent="." instance=ExtResource("4_swbn8")]
+position = Vector2(42, 11)
+
+[node name="Pulga5" parent="." instance=ExtResource("4_swbn8")]
+position = Vector2(53, 15)
+
+[connection signal="button_up" from="Empezar" to="." method="_on_empezar_button_up"]
+[connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]

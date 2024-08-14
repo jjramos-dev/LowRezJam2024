@@ -16,10 +16,12 @@ func _process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		$AnimationPlayer.play("catapultar")
+		print("catapulta")
 
 func impulsar(pulga):
-	_pulga.impulsar(impulso)
-	_pulga=null
+	if _pulga!=null:
+		_pulga.impulsar(impulso)
+		_pulga=null
 
 func _on_body_entered(body):
 	if body.is_in_group("pulga"):

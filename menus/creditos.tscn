@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnlwpgvjximwk"]
+
+[ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="1_mgg81"]
+[ext_resource type="Script" path="res://menus/creditos.gd" id="1_pjkue"]
+[ext_resource type="Texture2D" uid="uid://dfal6gfb2hl6i" path="res://activos/graficos/marco.png" id="2_atskx"]
+[ext_resource type="FontFile" uid="uid://jgdl0qowmsnl" path="res://activos/fuentes/geompixel.ttf" id="3_qwj6r"]
+[ext_resource type="PackedScene" uid="uid://tlpxudrg2jn1" path="res://personajes/pulga.tscn" id="5_vvhhh"]
+
+[sub_resource type="Animation" id="Animation_4ydat"]
+resource_name = "creditos"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("creditos/texto:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.53333, 3.5, 4.7)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.86667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cambiar_mensaje"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8biki"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("creditos/texto:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vroxw"]
+_data = {
+"RESET": SubResource("Animation_8biki"),
+"creditos": SubResource("Animation_4ydat")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scyoi"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q7k7"]
+size = Vector2(20, 83)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5pt0"]
+size = Vector2(20, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_327k8"]
+size = Vector2(15, 4)
+
+[node name="Creditos" type="Node2D"]
+script = ExtResource("1_pjkue")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("1_mgg81")
+
+[node name="Marco" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("2_atskx")
+
+[node name="creditos" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 63.0
+offset_bottom = 63.0
+
+[node name="texto" type="RichTextLabel" parent="creditos"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 61.0
+offset_bottom = 52.0
+theme_override_constants/line_separation = 1
+theme_override_fonts/normal_font = ExtResource("3_qwj6r")
+theme_override_font_sizes/normal_font_size = 5
+bbcode_enabled = true
+text = "+Music: \"Circus Tent\" Kevin MacLeod (incompetech.com), CC BY 4.0"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vroxw")
+}
+autoplay = "creditos"
+
+[node name="limites" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="limites"]
+position = Vector2(32, 74)
+shape = SubResource("RectangleShape2D_scyoi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="limites"]
+position = Vector2(-10, 42.5)
+shape = SubResource("RectangleShape2D_4q7k7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="limites"]
+position = Vector2(74, 42)
+shape = SubResource("RectangleShape2D_j5pt0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="limites"]
+position = Vector2(50.5, 58)
+shape = SubResource("RectangleShape2D_327k8")
+
+[node name="Pulga" parent="." instance=ExtResource("5_vvhhh")]
+position = Vector2(8, 40)
+
+[node name="Pulga2" parent="." instance=ExtResource("5_vvhhh")]
+position = Vector2(27, 54)
+
+[node name="Pulga3" parent="." instance=ExtResource("5_vvhhh")]
+position = Vector2(54, 41)
+
+[node name="Pulga4" parent="." instance=ExtResource("5_vvhhh")]
+position = Vector2(38, 43)
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+offset_left = 39.0
+offset_top = 50.0
+offset_right = 63.0
+offset_bottom = 64.0
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.537255, 0, 0.0588235, 1)
+theme_override_fonts/font = ExtResource("3_qwj6r")
+theme_override_font_sizes/font_size = 5
+text = "exit"
+flat = true
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

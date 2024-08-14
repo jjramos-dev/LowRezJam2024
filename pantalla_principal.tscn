@@ -1,63 +1,499 @@
-[gd_scene load_steps=15 format=3 uid="uid://whqms4rv85yf"]
+[gd_scene load_steps=27 format=3 uid="uid://whqms4rv85yf"]
 
 [ext_resource type="Script" path="res://escenas/pantalla_principal.gd" id="1_og0di"]
 [ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="1_qaugb"]
-[ext_resource type="PackedScene" uid="uid://tlpxudrg2jn1" path="res://personajes/pulga.tscn" id="2_wxkav"]
 [ext_resource type="Texture2D" uid="uid://dfal6gfb2hl6i" path="res://activos/graficos/marco.png" id="3_k5jk3"]
 [ext_resource type="PackedScene" uid="uid://dgm16amlkthlr" path="res://mobiliario/plancha.tscn" id="3_qsr8n"]
 [ext_resource type="PackedScene" uid="uid://b2r8oewvv0hhf" path="res://mobiliario/balancin.tscn" id="3_wxq23"]
 [ext_resource type="PackedScene" uid="uid://ckytarkd2026m" path="res://mobiliario/trampolin.tscn" id="4_lgfkk"]
-[ext_resource type="PackedScene" uid="uid://e5ommegsge8v" path="res://mobiliario/catapulta.tscn" id="4_yytxt"]
+[ext_resource type="PackedScene" uid="uid://c0k4obl6ofhsq" path="res://Componentes/llama.tscn" id="6_e5hdt"]
 [ext_resource type="PackedScene" uid="uid://kykxpjnirtnt" path="res://Componentes/generador_pulgas.tscn" id="8_bmtf3"]
+[ext_resource type="Script" path="res://Componentes/control.gd" id="10_b8ac3"]
 [ext_resource type="PackedScene" uid="uid://kdftp2hdg8jg" path="res://mobiliario/cuba.tscn" id="10_kg1yu"]
+[ext_resource type="FontFile" uid="uid://jgdl0qowmsnl" path="res://activos/fuentes/geompixel.ttf" id="11_d0ibh"]
+[ext_resource type="FontFile" uid="uid://c5helq85yhyy5" path="res://activos/fuentes/geompixel tiny.ttf" id="11_rlqh8"]
+[ext_resource type="PackedScene" uid="uid://dnbuqeaoopxu0" path="res://Componentes/final.tscn" id="13_dpbyp"]
+[ext_resource type="Texture2D" uid="uid://bcg4c2dsqxcx4" path="res://activos/graficos/foco.png" id="14_eup3e"]
+[ext_resource type="AudioStream" uid="uid://d21g6i3u5yxfr" path="res://activos/musica/Circus Tent.mp3" id="15_7gklg"]
+[ext_resource type="Script" path="res://Componentes/audio_stream_player.gd" id="16_qsmcs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdkh"]
 size = Vector2(85, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxg6"]
-size = Vector2(10, 57)
+size = Vector2(10, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m02b5"]
-size = Vector2(10, 57)
+size = Vector2(10, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dmoc"]
 size = Vector2(84, 8)
+
+[sub_resource type="Animation" id="Animation_sxhvi"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Foco:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(46, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Foco:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Foco:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.465, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Foco:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.465, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Foco:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Objetos/Llama8:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Objetos/Llama8:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Objetos/Llama8:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Objetos/Llama:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Objetos/Llama:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_e88o7"]
+resource_name = "bien"
+length = 6.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Foco:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(36, -0.25, 0, 0.25, 0, 36, -0.25, 0, 0.25, 0, 36, -0.25, 0, 0.25, 0, 36, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 1.96667, 2.63333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Foco:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-14, -0.25, 0, 0.25, 0, -12.5, -0.25, 0, 0.25, 0, 1.5, -0.3, -9, 0.233333, 7, 53.5, -0.3, -24, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 1.43333, 2.46667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Foco:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.465, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Foco:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.465, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Foco:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 5.75261, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.53333)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Objetos/Llama:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Objetos/Llama2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Objetos/Llama3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Objetos/Llama4:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Objetos/Llama5:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Objetos/Llama6:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Objetos/Llama7:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Objetos/Llama8:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 4.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Objetos/Llama9:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 4.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Objetos/Llama10:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 4.76667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Objetos/Llama8:position:x")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0, 51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5, 2.63333)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Objetos/Llama8:position:y")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0, 51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5, 2.63333)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Objetos/Llama:position:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Objetos/Llama:position:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(2.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xqtp1"]
+_data = {
+"RESET": SubResource("Animation_sxhvi"),
+"bien": SubResource("Animation_e88o7")
+}
+
+[sub_resource type="Animation" id="Animation_jt1a2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Objetos:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Objetos:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_5fj3m"]
+resource_name = "sesion"
+length = 120.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("[stop]", "bien"),
+"times": PackedFloat32Array(0, 46.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Objetos:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 48.6, 50.1667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Objetos:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 48.6, 50.1667)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(85.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"acelerar"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0x782"]
+_data = {
+"RESET": SubResource("Animation_jt1a2"),
+"sesion": SubResource("Animation_5fj3m")
+}
 
 [node name="PantallaPrincipal" type="Node2D"]
 script = ExtResource("1_og0di")
 
 [node name="Fondo" type="Sprite2D" parent="."]
+z_index = -2
 position = Vector2(32, 32)
 texture = ExtResource("1_qaugb")
 
 [node name="Balancin" parent="." instance=ExtResource("3_wxq23")]
 position = Vector2(14, 0)
+salto_derecha = Vector2(0.5, -0.5)
 
 [node name="Balancin2" parent="." instance=ExtResource("3_wxq23")]
 position = Vector2(46, 0)
 scale = Vector2(-1, 1)
 ritmo = 2
 desfase = 500
+salto_derecha = Vector2(-0.5, -0.5)
+salto_izquierda = Vector2(-0.5, -0.5)
+flipado = true
 
 [node name="Limites" type="StaticBody2D" parent="."]
 position = Vector2(0, 56)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limites"]
-position = Vector2(32.5, 0)
+position = Vector2(32.5, 6)
 shape = SubResource("RectangleShape2D_ycdkh")
 
-[node name="ColorRect" type="ColorRect" parent="Limites"]
+[node name="ColorRect" type="ColorRect" parent="Limites/CollisionShape2D"]
+offset_left = -32.0
 offset_top = -11.0
-offset_right = 64.0
-offset_bottom = 8.0
+offset_right = 31.0
+offset_bottom = 2.0
 color = Color(0.537255, 0, 0.0588235, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Limites"]
-position = Vector2(-5, -39.5)
+position = Vector2(-5, -36)
 shape = SubResource("RectangleShape2D_gcxg6")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Limites"]
-position = Vector2(69, -39.5)
+position = Vector2(69, -36)
 shape = SubResource("RectangleShape2D_m02b5")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Limites"]
@@ -65,10 +501,10 @@ position = Vector2(32, -60)
 shape = SubResource("RectangleShape2D_2dmoc")
 
 [node name="Plancha" parent="Limites" instance=ExtResource("3_qsr8n")]
-position = Vector2(4, -22)
+position = Vector2(4, -14)
 
 [node name="Plancha2" parent="Limites" instance=ExtResource("3_qsr8n")]
-position = Vector2(59, -22)
+position = Vector2(59, -19)
 
 [node name="Marco" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
@@ -79,25 +515,137 @@ position = Vector2(32, 32)
 
 [node name="Objetos" type="Node2D" parent="."]
 
-[node name="Pulga" parent="Objetos" instance=ExtResource("2_wxkav")]
+[node name="Llama" parent="Objetos" instance=ExtResource("6_e5hdt")]
 visible = false
-position = Vector2(5, 27)
-JUMP_VELOCITY = 25.0
-gravedad = Vector2(0, 20)
+position = Vector2(34, 51)
 
-[node name="Trampolin" parent="Objetos" instance=ExtResource("4_lgfkk")]
-position = Vector2(29, 44)
-IMPULSO = 1.2
+[node name="Llama2" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(39, 51)
+
+[node name="Llama3" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(42, 51)
+
+[node name="Llama4" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(31, 51)
+
+[node name="Llama5" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(28, 51)
+
+[node name="Llama7" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(24, 51)
+
+[node name="Llama9" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(19, 51)
+
+[node name="Llama10" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(15, 51)
+
+[node name="Llama8" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(51, 51)
+
+[node name="Llama6" parent="Objetos" instance=ExtResource("6_e5hdt")]
+visible = false
+position = Vector2(46, 51)
 
 [node name="InicioZonaControlTrampolin" type="Node2D" parent="."]
-position = Vector2(0, 45)
+position = Vector2(0, 51)
 
 [node name="Marker2D" type="Marker2D" parent="InicioZonaControlTrampolin"]
 
+[node name="Trampolin" parent="InicioZonaControlTrampolin" instance=ExtResource("4_lgfkk")]
+position = Vector2(29, -1)
+
 [node name="GeneradorPulgas" parent="." instance=ExtResource("8_bmtf3")]
+position = Vector2(2, 38)
+max_n_pulgas = 25
 
 [node name="cuba" parent="." instance=ExtResource("10_kg1yu")]
-position = Vector2(58, 28)
+position = Vector2(58, 31)
 
-[node name="catapulta" parent="." instance=ExtResource("4_yytxt")]
-position = Vector2(56, 43)
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+script = ExtResource("10_b8ac3")
+temporizador = 120
+
+[node name="Temporizador" type="Label" parent="Control"]
+self_modulate = Color(0.29219, 0.29219, 0.29219, 0.584314)
+texture_filter = 1
+layout_mode = 2
+offset_left = 25.0
+offset_top = 2.0
+offset_right = 37.0
+offset_bottom = 8.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("11_rlqh8")
+theme_override_font_sizes/font_size = 5
+text = "000"
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 63.0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="Contador" type="Label" parent="Control/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("11_d0ibh")
+theme_override_font_sizes/font_size = 5
+text = "000"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="Control"]
+
+[node name="Final" parent="." instance=ExtResource("13_dpbyp")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xqtp1")
+}
+
+[node name="Foco" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(46, -14)
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("14_eup3e")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0x782")
+}
+autoplay = "sesion"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_7gklg")
+autoplay = true
+parameters/looping = false
+script = ExtResource("16_qsmcs")
+
+[connection signal="puntuar" from="Balancin" to="." method="_on_balancin_puntuar"]
+[connection signal="puntuar" from="Balancin2" to="." method="_on_balancin_2_puntuar"]
+[connection signal="puntuar" from="InicioZonaControlTrampolin/Trampolin" to="." method="_on_trampolin_puntuar"]
+[connection signal="puntuar" from="cuba" to="." method="_on_trampolin_puntuar"]
+[connection signal="tiempo_expirado" from="Control" to="." method="_on_control_tiempo_expirado"]
+[connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

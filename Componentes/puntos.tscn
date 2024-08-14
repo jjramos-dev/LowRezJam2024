@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnl8nbyt3q0h"]
+
+[ext_resource type="Script" path="res://Componentes/puntos.gd" id="1_kgpq1"]
+[ext_resource type="FontFile" uid="uid://c5helq85yhyy5" path="res://activos/fuentes/geompixel tiny.ttf" id="2_rfiw8"]
+
+[node name="Puntos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kgpq1")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.541176)
+texture_filter = 1
+layout_mode = 1
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 13.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_rfiw8")
+theme_override_font_sizes/font_size = 5
+text = "+20"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

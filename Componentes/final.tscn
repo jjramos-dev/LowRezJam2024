@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnbuqeaoopxu0"]
+
+[ext_resource type="FontFile" uid="uid://jgdl0qowmsnl" path="res://activos/fuentes/geompixel.ttf" id="1_3401a"]
+[ext_resource type="Script" path="res://Componentes/final.gd" id="1_thkxe"]
+[ext_resource type="Texture2D" uid="uid://qj7hm1e8285j" path="res://activos/graficos/fondo.png" id="2_i764k"]
+
+[sub_resource type="Animation" id="Animation_phrqt"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mensaje:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_2dgq1"]
+resource_name = "stop"
+
+[sub_resource type="Animation" id="Animation_oll1j"]
+resource_name = "the_end"
+length = 6.5
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"cambiar_mensaje"
+}]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mensaje:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 1.63333, 4, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7aig2"]
+_data = {
+"RESET": SubResource("Animation_phrqt"),
+"stop": SubResource("Animation_2dgq1"),
+"the_end": SubResource("Animation_oll1j")
+}
+
+[node name="Final" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 64.0
+offset_bottom = 63.0
+script = ExtResource("1_thkxe")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(32, 26.5)
+scale = Vector2(0.9375, 0.765625)
+texture = ExtResource("2_i764k")
+
+[node name="mensaje" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(0.392157, 0.505882, 0.568627, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("1_3401a")
+theme_override_font_sizes/font_size = 5
+text = "The End!"
+horizontal_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7aig2")
+}
+
+[node name="Pulgas" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 22.0
+offset_right = 62.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.537255, 0, 0.0588235, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("1_3401a")
+theme_override_font_sizes/font_size = 5
+text = "+ Fleas:
+alive  x212
+smashed x234
+smoked: x121 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Puntos" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = 54.0
+offset_right = 64.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0.392157, 0.505882, 0.568627, 1)
+theme_override_fonts/font = ExtResource("1_3401a")
+theme_override_font_sizes/font_size = 5
+text = "+ Points:   "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 23.0
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("1_3401a")
+theme_override_font_sizes/font_size = 5
+flat = true
+
+[connection signal="gui_input" from="mensaje" to="." method="_on_label_gui_input"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
